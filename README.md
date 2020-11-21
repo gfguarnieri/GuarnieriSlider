@@ -15,3 +15,4 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 ```
+Demonstração: https://gfguarnieri.github.io/GuarnieriSlider/
