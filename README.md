@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function(){
         blockButton: true, //Bloquear botões lateriais ao chegar no limite
         interval: 3000, //Intervalo de cada slide
         transition: 1000, //Duração do efeito de transição
+        aspect: 0, //Caso queira manter a proporção das imagens no slideshow - objectFit = contain.
         width: "100vw", //Largura do Slideshow
         height: "100vh" //Altura do Slideshow
     });
