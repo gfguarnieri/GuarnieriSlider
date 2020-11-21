@@ -1,4 +1,4 @@
-// guarnieriSlider - v0.1
+// guarnieriSlider - v0.2
 
 function GuarnieriSlider(params){
 
@@ -9,10 +9,44 @@ function GuarnieriSlider(params){
     const btnForward = document.getElementById("btnForward");
     const btnPrevious = document.getElementById("btnPrevious");
     const guarnieriSlider = document.querySelector(".guarnieri-slider");
-    guarnieriSlider.style.width = params.width;
-    guarnieriSlider.style.height = params.height;
+
+    const propor = params.aspect;
+
+    if(propor!=0){
+        let images = document.querySelectorAll(".guarnieri-slider .slides .slide img");
+        images.forEach(el => {
+            el.style.objectFit = "contain";
+        })
+    }
+
+    const width = params.width;
+    const height = params.height;
+
+    function adjustSize(){
+        if(propor!=0){
+            //let w = window.innerWidth * (width/100);
+            guarnieriSlider.style.width = width + "%";
+            guarnieriSlider.style.height = guarnieriSlider.offsetWidth/propor+"px";
+        }else{
+            guarnieriSlider.style.width = width;
+            guarnieriSlider.style.height = height;
+        }
+    }
 
     const slides = document.querySelectorAll(".guarnieri-slider .slides .slide");
+
+    adjustSize();
+
+    function startSlider(){
+        slides.forEach(function(el, index){
+            if(index>0){
+                el.classList.add("right");
+            }
+        });
+    }
+
+    startSlider();
+
     var current = 0;
     var currentSlide;
 
@@ -35,9 +69,22 @@ function GuarnieriSlider(params){
         paused = false;
     });
    
-    slides.forEach(slide => {
-        slide.style.transition = (transition/1000)+"s transform ease";
-    });
+    function removeAnimation(less){
+        slides.forEach(function(slide, index){
+            if(index!=less){
+                slide.removeAttribute("style");
+                slide.removeAttribute("style");
+            }
+        });
+    }
+
+    function addAnimation(){
+        slides.forEach(slide => {
+            slide.style.transition = (transition/1000)+"s transform ease";
+        });
+    }
+
+    addAnimation();
 
     //Forward Button Click
     btnForward.addEventListener("click", function(){
@@ -50,17 +97,25 @@ function GuarnieriSlider(params){
         });
         //Last
         if(current == slides.length-1){
+            removeAnimation(current);
             slides.forEach(function(slide, index){
                 if(index == 0){
-                    slide.classList.remove("right");
                     slide.classList.remove("left");
+                    slide.classList.remove("right");
                     slide.classList.add("active");
-                }else{
+                }
+                else if(index == current){
+                    slide.classList.add("right");
+                    slide.classList.remove("active");
+                }
+                else{
                     slide.classList.remove("active");
                     slide.classList.remove("left");
                     slide.classList.add("right");
                 }
+
             });
+            setInterval(addAnimation, transition/1000);
         }else{
             currentSlide.classList.remove("active");
             currentSlide.classList.add("left");
@@ -84,6 +139,7 @@ function GuarnieriSlider(params){
         });
         //first
         if(current == 0){
+            //removeAnimation(slides.length-1);
             slides.forEach(function(slide, index){
                 if(index == slides.length-1){
                     slide.classList.remove("left");
@@ -95,6 +151,7 @@ function GuarnieriSlider(params){
                     slide.classList.add("left");
                 }
             });
+            setInterval(addAnimation, transition/1000);
         }else{
             currentSlide.classList.remove("active");
             currentSlide.classList.add("right");
@@ -106,11 +163,24 @@ function GuarnieriSlider(params){
             }
         }
     });
-    setTimeout(avancar, interval);
-    function avancar(){
+    setTimeout(next, interval);
+    function next(){
         if(!paused && autoPlay){
-            btnForward.click();
+            if(!btnForward.classList.contains("disabled-button"))
+                btnForward.click();
         }
-        setTimeout(avancar, interval);
+        setTimeout(next, interval);
     }
+
+
+    window.addEventListener('resize', function(event){
+        adjustSize();
+    });
+
+
+    window.addEventListener("orientationchange", function() {
+        adjustSize();
+    });
+
+
 }

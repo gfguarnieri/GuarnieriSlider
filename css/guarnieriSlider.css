@@ -41,8 +41,8 @@ body{
 }
 
 .guarnieri-slider .previous, .forward{
-    padding: 15px;
-    background-color: white;
+    padding: 10px;
+    background-color: #ffffffaa;
     visibility: visible;
     opacity: 1;
     transition: opacity 1s;
@@ -60,11 +60,11 @@ body{
 .guarnieri-slider .previous{
     position: absolute;
     top: 40%;
-    left: 15px;
+    left: 25px;
 }
 
 .guarnieri-slider .forward{
     position: absolute;
     top: 40%;
-    right: 15px;
+    right: 25px;
 }
