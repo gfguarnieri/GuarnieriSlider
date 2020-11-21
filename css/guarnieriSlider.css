@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+}
+
+.guarnieri-slider{
+    position: relative;
+    width: 100vw;
+    height: 250px;
+    margin: auto;
+    background-color: white;
+    overflow: hidden;
+}
+
+.guarnieri-slider .slides .slide.active{
+    transform: translateX(0%);
+}
+
+.guarnieri-slider .slides .slide.left{
+    transform: translateX(-100%);
+}
+
+.guarnieri-slider .slides .slide.right{
+    transform: translateX(100%);
+}
+
+.guarnieri-slider .slides .slide{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
+    transform: translateX(100%);
+}
+
+.guarnieri-slider .slides .slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.guarnieri-slider .previous, .forward{
+    padding: 15px;
+    background-color: white;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.disabled-button{
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+.guarnieri-slider .previous:hover, .forward:hover{
+    cursor: pointer;
+}
+
+.guarnieri-slider .previous{
+    position: absolute;
+    top: 40%;
+    left: 15px;
+}
+
+.guarnieri-slider .forward{
+    position: absolute;
+    top: 40%;
+    right: 15px;
+}

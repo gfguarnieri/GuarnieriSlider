@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuarnieriSlider - Vanilla Slider</title>
+    <link rel="stylesheet" href="./css/guarnieriSlider.css"/>
+</head>
+<body>
+    <div class="guarnieri-slider">
+        <div class="slides">
+            <a href="#">
+                <div class="slide active">
+                    <img src="https://picsum.photos/1200/720?grayscale&random=1" alt="Slide 1">
+                </div>
+            </a>
+            <a href="#">
+                <div class="slide">
+                    <img src="https://picsum.photos/1200/720?grayscale&random=2" alt="Slide 2">
+                </div>
+            </a>
+            <a href="#">
+                <div class="slide">
+                    <img src="https://picsum.photos/1200/720?grayscale&random=3" alt="Slide 3">
+                </div>
+            </a>
+            <a href="#">
+                <div class="slide">
+                    <img src="https://picsum.photos/1200/720?grayscale&random=4" alt="Slide 4">
+                </div>
+            </a>
+            <a href="#">
+                <div class="slide">
+                    <img src="https://picsum.photos/1200/720?grayscale&random=5" alt="Slide 5">
+                </div>
+            </a>
+        </div>
+        <a class="previous" id="btnPrevious"><</a>
+        <a class="forward" id="btnForward">></a>
+    </div>
+
+
+</body>
+<script src="./js/guarnieriSlider.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        GuarnieriSlider({
+            autoPlay: false,
+            blockButton: true,
+            interval: 3000,
+            transition: 1000,
+            width: "100vw",
+            height: "100vh"
+        });
+    });
+</script>
+</html>
